@@ -11,6 +11,7 @@ import { useEffect, type ReactNode } from "react";
 
 import appCss from "../styles.css?url";
 import { reportLovableError } from "../lib/lovable-error-reporting";
+import { Footer, Header, StickyCta } from "@/components/site/Chrome";
 
 function NotFoundComponent() {
   return (
@@ -77,18 +78,15 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Lovable App" },
-      { name: "description", content: "J&J Mechanical's website generates leads for HVAC and plumbing services with a luxury design." },
-      { name: "author", content: "Lovable" },
-      { property: "og:title", content: "Lovable App" },
-      { property: "og:description", content: "J&J Mechanical's website generates leads for HVAC and plumbing services with a luxury design." },
+      { title: "J&J Mechanical | HVAC & Plumbing Blackstone VA" },
+      { name: "description", content: "24/7 HVAC, plumbing and gas service in Blackstone and Southside Virginia. Call J&J Mechanical for fast, professional local service." },
+      { name: "author", content: "J&J Mechanical" },
+      { property: "og:title", content: "J&J Mechanical | HVAC & Plumbing" },
+      { property: "og:description", content: "Trusted local HVAC, plumbing and gas service across Southside Virginia." },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:site", content: "@Lovable" },
-      { name: "twitter:title", content: "Lovable App" },
-      { name: "twitter:description", content: "J&J Mechanical's website generates leads for HVAC and plumbing services with a luxury design." },
-      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2854e5b3-876e-4378-9978-cd1ba1ced889/id-preview-96fb7666--f21a93d0-04f6-4e4c-8c23-8b4794fd1ab7.lovable.app-1785752945440.png" },
-      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/2854e5b3-876e-4378-9978-cd1ba1ced889/id-preview-96fb7666--f21a93d0-04f6-4e4c-8c23-8b4794fd1ab7.lovable.app-1785752945440.png" },
+      { name: "twitter:title", content: "J&J Mechanical | HVAC & Plumbing" },
+      { name: "twitter:description", content: "Trusted local HVAC, plumbing and gas service across Southside Virginia." },
     ],
     links: [
       {
@@ -96,6 +94,9 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
         href: appCss,
       },
       { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
+      { rel: "preconnect", href: "https://fonts.googleapis.com" },
+      { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
+      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" },
     ],
   }),
   shellComponent: RootShell,
@@ -123,8 +124,10 @@ function RootComponent() {
 
   return (
     <QueryClientProvider client={queryClient}>
-      {/* Required: nested routes render here. Removing <Outlet /> breaks all child routes. */}
-      <Outlet />
+      <Header />
+      <main><Outlet /></main>
+      <Footer />
+      <StickyCta />
     </QueryClientProvider>
   );
 }

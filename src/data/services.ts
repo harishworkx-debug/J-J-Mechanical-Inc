@@ -37,7 +37,9 @@ export function parsePageSlug(slug: string): ParsedPage | null {
     const suffix = `-${location.slug}`;
     if (slug.endsWith(suffix)) {
       const service = getService(slug.slice(0, -suffix.length));
-      if (service) return { service, location };
+      if (service) {
+        return { service, location };
+      }
     }
   }
   return null;
@@ -47,8 +49,7 @@ export function parsePageSlug(slug: string): ParsedPage | null {
 export function allServicePages() {
   const pages: { url: string; service: Service; location: (typeof LOCATIONS)[number] }[] = [];
   for (const location of LOCATIONS) {
-    const list = location.slug === "blackstone-va" ? SERVICES : MAJOR_SERVICES;
-    for (const service of list) {
+    for (const service of SERVICES) {
       pages.push({ url: pageUrl(service.slug, location.slug), service, location });
     }
   }

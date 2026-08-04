@@ -73,19 +73,7 @@ export function CallButton({ label = "Call Now", className = "" }: { label?: str
   );
 }
 
-export function WhatsAppButton({ label = "WhatsApp Us", className = "" }: { label?: string; className?: string }) {
-  return (
-    <a
-      href={SITE.whatsapp}
-      target="_blank"
-      rel="noopener noreferrer"
-      className={`inline-flex items-center gap-2.5 rounded-full border border-current/25 px-6 py-3.5 text-sm font-bold tracking-wide transition-colors duration-300 hover:bg-current/10 ${className}`}
-    >
-      <MessageCircle className="h-4 w-4" />
-      {label}
-    </a>
-  );
-}
+
 
 export function Eyebrow({ children, tone = "copper" }: { children: ReactNode; tone?: "copper" | "muted" }) {
   return (
@@ -139,10 +127,12 @@ function DesktopNav() {
         <button className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground">
           Services <ChevronDown className="h-3.5 w-3.5" />
         </button>
-        {open === "services" ? (
-          <div className="absolute top-full left-1/2 z-50 w-[52rem] -translate-x-1/2 pt-3">
-            <div className="grid grid-cols-3 gap-6 rounded-2xl border border-hairline bg-card p-7 shadow-[var(--shadow-lux)]">
-              {(["hvac", "plumbing", "gas"] as const).map((cat) => (
+        {open === "services" ? (() => {
+          const activeCats = (["hvac", "plumbing", "gas"] as const).filter(c => servicesByCategory(c).length > 0);
+          return (
+          <div className="absolute top-full left-1/2 z-50 w-max min-w-[20rem] -translate-x-1/2 pt-3">
+            <div className={`grid gap-6 rounded-2xl border border-hairline bg-card p-7 shadow-[var(--shadow-lux)] ${activeCats.length === 3 ? 'grid-cols-3' : activeCats.length === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
+              {activeCats.map((cat) => (
                 <div key={cat}>
                   <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
                   <ul className="mt-3 space-y-1.5">
@@ -162,7 +152,7 @@ function DesktopNav() {
               ))}
             </div>
           </div>
-        ) : null}
+        );})() : null}
       </div>
 
       <div className="relative" onMouseEnter={() => setOpen("areas")}>
@@ -170,25 +160,17 @@ function DesktopNav() {
           Service Areas <ChevronDown className="h-3.5 w-3.5" />
         </button>
         {open === "areas" ? (
-          <div className="absolute top-full right-0 z-50 w-[58rem] pt-3">
-            <div className="grid grid-cols-4 gap-5 rounded-2xl border border-hairline bg-card p-7 shadow-[var(--shadow-lux)]">
+          <div className="absolute top-full right-0 z-50 w-56 pt-3">
+            <div className="flex flex-col gap-1 rounded-2xl border border-hairline bg-card p-3 shadow-[var(--shadow-lux)]">
               {LOCATIONS.map((loc) => (
-                <div key={loc.slug}>
-                  <p className="text-sm font-semibold text-foreground">{loc.name}</p>
-                  <ul className="mt-2 space-y-1">
-                    {MAJOR_SERVICES.slice(0, 6).map((s) => (
-                      <li key={s.slug}>
-                        <Link
-                          to="/$slug"
-                          params={{ slug: `${s.slug}-${loc.slug}` }}
-                          className="block text-[13px] text-muted-foreground transition-colors hover:text-copper"
-                        >
-                          {s.name}
-                        </Link>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
+                <Link
+                  key={loc.slug}
+                  to="/$slug"
+                  params={{ slug: `ac-repair-${loc.slug}` }}
+                  className="block rounded-md px-3 py-2 text-sm font-semibold text-foreground transition-colors hover:bg-secondary hover:text-copper"
+                >
+                  {loc.name}
+                </Link>
               ))}
             </div>
           </div>
@@ -273,7 +255,7 @@ export function Header() {
 
         {mobile ? (
           <div className="max-h-[70vh] overflow-y-auto border-t border-ink-foreground/10 bg-ink px-5 pb-8 lg:hidden">
-            {(["hvac", "plumbing", "gas"] as const).map((cat) => (
+            {(["hvac", "plumbing", "gas"] as const).filter(c => servicesByCategory(c).length > 0).map((cat) => (
               <div key={cat} className="mt-5">
                 <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
                 <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
@@ -298,7 +280,7 @@ export function Header() {
                   <Link
                     key={loc.slug}
                     to="/$slug"
-                    params={{ slug: `hvac-repair-${loc.slug}` }}
+                    params={{ slug: `ac-repair-${loc.slug}` }}
                     onClick={() => setMobile(false)}
                     className="py-1 text-[13px] text-ink-foreground/70"
                   >
@@ -357,7 +339,6 @@ export function CtaBand({
           <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-ink-foreground/75">{body}</p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <CallButton label="Call Now" />
-            <WhatsAppButton className="text-ink-foreground" />
             <Link
               to="/contact"
               className="inline-flex items-center gap-2 rounded-full bg-ink-foreground px-6 py-3.5 text-sm font-bold text-ink transition-transform duration-300 hover:-translate-y-0.5"
@@ -386,32 +367,15 @@ export function StickyCta() {
         >
           <Phone className="h-5 w-5" />
         </a>
-        <a
-          href={SITE.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label="Message J&J Mechanical on WhatsApp"
-          className="grid h-14 w-14 place-items-center rounded-full bg-success text-ink-foreground shadow-[var(--shadow-card)] transition-transform hover:scale-105"
-        >
-          <MessageCircle className="h-5 w-5" />
-        </a>
       </div>
 
-      <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-2 gap-2 border-t border-ink-foreground/10 bg-ink/95 p-3 backdrop-blur-xl md:hidden">
+      <div className="fixed inset-x-0 bottom-0 z-40 grid grid-cols-1 gap-2 border-t border-ink-foreground/10 bg-ink/95 p-3 backdrop-blur-xl md:hidden">
         <a
           href={SITE.phoneHref}
           className="inline-flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold text-copper-foreground"
           style={{ backgroundImage: "var(--gradient-copper)" }}
         >
           <Phone className="h-4 w-4" /> Call Now
-        </a>
-        <a
-          href={SITE.whatsapp}
-          target="_blank"
-          rel="noopener noreferrer"
-          className="inline-flex items-center justify-center gap-2 rounded-xl bg-success py-3 text-sm font-bold text-ink-foreground"
-        >
-          <MessageCircle className="h-4 w-4" /> WhatsApp
         </a>
       </div>
     </>
@@ -446,7 +410,7 @@ export function Footer() {
             </div>
           </div>
 
-          {(["hvac", "plumbing", "gas"] as const).map((cat) => (
+          {(["hvac", "plumbing", "gas"] as const).filter(c => servicesByCategory(c).length > 0).map((cat) => (
             <div key={cat}>
               <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
               <ul className="mt-4 space-y-2">
@@ -473,7 +437,7 @@ export function Footer() {
               <Link
                 key={loc.slug}
                 to="/$slug"
-                params={{ slug: pageUrl("hvac-repair", loc.slug).slice(1) }}
+                params={{ slug: pageUrl("ac-repair", loc.slug).slice(1) }}
                 className="rounded-full border border-ink-foreground/15 px-4 py-1.5 text-[13px] text-ink-foreground/70 transition-colors hover:border-copper hover:text-copper"
               >
                 {loc.full}

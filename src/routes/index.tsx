@@ -1,6 +1,6 @@
 import { Link, createFileRoute } from "@tanstack/react-router";
 import { ArrowRight, Check, Gauge, ShieldCheck, Star, Wrench } from "lucide-react";
-import { CallButton, CtaBand, Eyebrow, Reveal, SectionHeading, WhatsAppButton } from "@/components/site/Chrome";
+import { CallButton, CtaBand, Eyebrow, Reveal, SectionHeading } from "@/components/site/Chrome";
 import { LOCATIONS, MAJOR_SERVICES } from "@/data/services";
 import { PROCESS, REVIEWS, SITE, TRUST } from "@/data/site";
 import { img } from "@/lib/images";
@@ -30,7 +30,7 @@ function HomePage() {
               Comfort restored. <span className="text-gradient-copper">Problems solved right.</span>
             </h1>
             <p className="mt-7 max-w-2xl text-lg leading-8 text-ink-foreground/78 sm:text-xl">Fast, measured HVAC, plumbing and gas service for homes and businesses across Blackstone and Southside Virginia — 24 hours a day.</p>
-            <div className="mt-9 flex flex-wrap gap-3"><CallButton label="Call for Service" /><WhatsAppButton className="text-ink-foreground" /></div>
+            <div className="mt-9 flex flex-wrap gap-3"><CallButton label="Call for Service" /></div>
             <div className="mt-10 flex flex-wrap gap-x-7 gap-y-3 text-sm text-ink-foreground/75">
               {TRUST.slice(0, 3).map((item) => <span key={item.label} className="inline-flex items-center gap-2"><Check className="h-4 w-4 text-copper" />{item.label}</span>)}
             </div>
@@ -48,7 +48,7 @@ function HomePage() {
         <div className="container-lux">
           <SectionHeading eyebrow="Complete mechanical service" title="One trusted team for every system in your property." intro="From a no-cool emergency to a full system replacement, our technicians diagnose with real measurements, explain the options clearly and verify the result before leaving." />
           <div className="mt-12 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-            {MAJOR_SERVICES.slice(0, 9).map((service, i) => <Reveal key={service.slug} delay={(i % 3) * .08}><Link to="/$slug" params={{ slug: `${service.slug}-blackstone-va` }} className="group block overflow-hidden lux-card"><div className="aspect-[16/9] overflow-hidden"><img src={img(service.image)} alt={service.imageAlt} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></div><div className="p-6"><p className="text-xs font-bold text-copper uppercase">{service.category}</p><h3 className="mt-2 text-xl font-semibold">{service.name}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{service.short}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-foreground">View service <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div></Link></Reveal>)}
+            {MAJOR_SERVICES.slice(0, 9).map((service, i) => <Reveal key={service.slug} delay={(i % 3) * .08}><Link to="/$slug" params={{ slug: `${service.slug}-blackstone-va` }} className="group block overflow-hidden lux-card"><div className="aspect-[16/9] overflow-hidden"><img src={img(service.image)} alt={service.imageAlt} loading="lazy" className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105" /></div><div className="p-6"><p className="text-xs font-bold text-copper uppercase">{service.category}</p><h3 className="mt-2 text-xl font-semibold">{service.name}</h3><p className="mt-3 text-sm leading-6 text-muted-foreground">{service.short}</p><span className="mt-5 inline-flex items-center gap-2 text-sm font-bold text-foreground">{service.name} <ArrowRight className="h-4 w-4 transition-transform group-hover:translate-x-1" /></span></div></Link></Reveal>)}
           </div>
         </div>
       </section>

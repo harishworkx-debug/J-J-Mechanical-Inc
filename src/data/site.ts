@@ -1,11 +1,10 @@
 export const SITE = {
   name: "J&J Mechanical",
   legalName: "J&J Mechanical LLC",
-  domain: "https://www.jjmechanicalservice.com",
-  phone: "+1 (434) 202-4058",
-  phoneRaw: "+14342024058",
-  phoneHref: "tel:+14342024058",
-  whatsapp: "https://wa.me/14342024058",
+  domain: "https://www.jjplumbingheatandair.com",
+  phone: "(434) 202-4058",
+  phoneRaw: "4342024058",
+  phoneHref: "tel:4342024058",
   email: "service@jjmechanicalservice.com",
   street: "111 N Main St",
   city: "Blackstone",
@@ -93,7 +92,7 @@ export const REVIEWS = [
 export const PROCESS = [
   {
     step: "01",
-    title: "Call or WhatsApp Us",
+    title: "Call Us",
     body: "Talk to a real person in Blackstone — not a national call center. We ask the right diagnostic questions up front so the right technician arrives with the right parts on the truck.",
   },
   {

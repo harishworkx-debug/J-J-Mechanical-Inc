@@ -1,7 +1,7 @@
 export const SITE = {
   name: "J&J Mechanical",
   legalName: "J&J Mechanical LLC",
-  domain: "https://www.jjplumbingheatandair.com",
+  domain: "https://www.jjmechanicalservice.com",
   phone: "(434) 202-4058",
   phoneRaw: "4342024058",
   phoneHref: "tel:4342024058",

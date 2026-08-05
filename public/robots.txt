@@ -13,4 +13,4 @@ Allow: /
 User-agent: *
 Allow: /
 
-Sitemap: https://www.jjplumbingheatandair.com/sitemap.xml
+Sitemap: https://www.jjmechanicalservice.com/sitemap.xml

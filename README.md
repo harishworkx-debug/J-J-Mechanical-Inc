@@ -130,11 +130,11 @@ Sticky Bottom CTA
 
 Phone
 
-+1 (434) 233-8883
++1 (434) 206-8795
 
 WhatsApp
 
-https://wa.me/14342338883
+https://wa.me/14342068795
 
 CTA Examples
 
@@ -172,7 +172,7 @@ United States
 
 Phone
 
-+1 (434) 233-8883
++1 (434) 206-8795
 
 Business Hours
 
@@ -616,7 +616,7 @@ CONTACT PAGE
 
 Phone
 
-+1 (434) 233-8883
++1 (434) 206-8795
 
 Address
 

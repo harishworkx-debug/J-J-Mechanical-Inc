@@ -32,9 +32,14 @@ export const POSTS: BlogPost[] = [
         <h2>Check the Thermostat First</h2>
         <p>
           Before calling for an{" "}
-          <a href="/heating-repair-blackstone-va" className="font-semibold text-copper hover:underline">HVAC repair in Blackstone</a>, verify your
-          thermostat is set to "Heat" and the fan is on "Auto." Sometimes a simple setting
-          adjustment or a low battery in the thermostat can mimic a system failure.
+          <a
+            href="/heating-repair-blackstone-va"
+            className="font-semibold text-copper hover:underline"
+          >
+            HVAC repair in Blackstone
+          </a>
+          , verify your thermostat is set to "Heat" and the fan is on "Auto." Sometimes a simple
+          setting adjustment or a low battery in the thermostat can mimic a system failure.
         </p>
         <h2>The Defrost Cycle</h2>
         <p>
@@ -55,9 +60,14 @@ export const POSTS: BlogPost[] = [
         <p>
           If you've checked your filter and thermostat and your heat pump is still struggling, it's
           time to call the experts. At J&amp;J Mechanical, we provide{" "}
-          <a href="/heat-pump-repair-blackstone-va" className="font-semibold text-copper hover:underline">heat pump repair</a> throughout Southside
-          Virginia. Our technicians will test pressures, electrical components, and airflow to find
-          the exact cause and give you clear repair options.
+          <a
+            href="/heat-pump-repair-blackstone-va"
+            className="font-semibold text-copper hover:underline"
+          >
+            heat pump repair
+          </a>{" "}
+          throughout Southside Virginia. Our technicians will test pressures, electrical components,
+          and airflow to find the exact cause and give you clear repair options.
         </p>
       </>
     ),
@@ -74,8 +84,17 @@ export const POSTS: BlogPost[] = [
         <p>
           Facing a major AC breakdown during a hot Virginia summer is stressful. The immediate
           question is always: should I pay for the{" "}
-          <a href="/ac-repair-blackstone-va" className="font-semibold text-copper hover:underline">AC repair</a> or invest in a new{" "}
-          <a href="/ac-installation-blackstone-va" className="font-semibold text-copper hover:underline">AC replacement</a>?
+          <a href="/ac-repair-blackstone-va" className="font-semibold text-copper hover:underline">
+            AC repair
+          </a>{" "}
+          or invest in a new{" "}
+          <a
+            href="/ac-installation-blackstone-va"
+            className="font-semibold text-copper hover:underline"
+          >
+            AC replacement
+          </a>
+          ?
         </p>
         <h2>The 5,000 Rule</h2>
         <p>
@@ -122,7 +141,13 @@ export const POSTS: BlogPost[] = [
           Your water heater works quietly in the background every day. But when it fails, it can
           cause significant water damage. Recognizing the warning signs early can save you from a
           major headache and an emergency{" "}
-          <a href="/plumbing-repair-blackstone-va" className="font-semibold text-copper hover:underline">plumbing repair</a>.
+          <a
+            href="/plumbing-repair-blackstone-va"
+            className="font-semibold text-copper hover:underline"
+          >
+            plumbing repair
+          </a>
+          .
         </p>
         <h2>1. Fluctuating Temperatures</h2>
         <p>
@@ -151,7 +176,13 @@ export const POSTS: BlogPost[] = [
         <p>
           Any moisture or pooling water around the base of the tank is an immediate red flag. It
           could be a loose connection, a failing T&amp;P valve, or a crack in the tank itself. Call
-          for <a href="/water-heater-services-blackstone-va" className="font-semibold text-copper hover:underline">water heater services</a>{" "}
+          for{" "}
+          <a
+            href="/water-heater-services-blackstone-va"
+            className="font-semibold text-copper hover:underline"
+          >
+            water heater services
+          </a>{" "}
           immediately to prevent a flood.
         </p>
         <h2>Local Service You Can Trust</h2>
@@ -207,7 +238,13 @@ export const POSTS: BlogPost[] = [
           If a pipe does freeze and burst, you need to turn off the main water supply immediately to
           minimize damage. Ensure every adult in the house knows where the valve is and how to turn
           it. If you have a plumbing emergency, call J&amp;J Mechanical for 24/7{" "}
-          <a href="/plumbing-repair-blackstone-va" className="font-semibold text-copper hover:underline">plumbing services in Blackstone, VA</a>.
+          <a
+            href="/plumbing-repair-blackstone-va"
+            className="font-semibold text-copper hover:underline"
+          >
+            plumbing services in Blackstone, VA
+          </a>
+          .
         </p>
       </>
     ),
@@ -258,8 +295,21 @@ export const POSTS: BlogPost[] = [
         <p>
           Routine maintenance easily pays for itself through lower energy bills and fewer repair
           calls. Contact J&amp;J Mechanical to ask about our Comfort Guard maintenance plans for
-          your home in <a href="/ac-maintenance-blackstone-va" className="font-semibold text-copper hover:underline">Blackstone</a>,{" "}
-          <a href="/heating-maintenance-crewe-va" className="font-semibold text-copper hover:underline">Crewe</a>, or Farmville.
+          your home in{" "}
+          <a
+            href="/ac-maintenance-blackstone-va"
+            className="font-semibold text-copper hover:underline"
+          >
+            Blackstone
+          </a>
+          ,{" "}
+          <a
+            href="/heating-maintenance-crewe-va"
+            className="font-semibold text-copper hover:underline"
+          >
+            Crewe
+          </a>
+          , or Farmville.
         </p>
       </>
     ),

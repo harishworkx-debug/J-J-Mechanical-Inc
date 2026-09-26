@@ -130,7 +130,8 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 
 function RootShell({ children }: { children: ReactNode }) {
   const router = useRouter();
-  const canonicalPath = router.state.location.pathname === "/" ? "" : router.state.location.pathname;
+  const canonicalPath =
+    router.state.location.pathname === "/" ? "" : router.state.location.pathname;
 
   return (
     <html lang="en">

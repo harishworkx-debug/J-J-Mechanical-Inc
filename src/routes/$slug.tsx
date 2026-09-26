@@ -6,21 +6,197 @@ import { REVIEWS, SITE } from "@/data/site";
 import { img } from "@/lib/images";
 
 export const Route = createFileRoute("/$slug")({
-  head: ({ params }) => { const page = parsePageSlug(params.slug); const title = page ? `${page.service.name} ${page.location.name} VA | J&J Mechanical` : "Local HVAC & Plumbing | J&J Mechanical"; const description = page ? `${page.service.name} in ${page.location.full}. Licensed local service, upfront pricing and 24/7 emergency response from J&J Mechanical.` : "Local HVAC, plumbing and gas service across Southside Virginia."; return { meta: [
-    { title }, { name: "description", content: description }, { property: "og:title", content: title }, { property: "og:description", content: description }, { property: "og:type", content: "website" }, { name: "twitter:card", content: "summary_large_image" },
-  ]}; }, component: ServiceLocationPage,
+  head: ({ params }) => {
+    const page = parsePageSlug(params.slug);
+    const title = page
+      ? `${page.service.name} ${page.location.name} VA | J&J Mechanical`
+      : "Local HVAC & Plumbing | J&J Mechanical";
+    const description = page
+      ? `${page.service.name} in ${page.location.full}. Licensed local service, upfront pricing and 24/7 emergency response from J&J Mechanical.`
+      : "Local HVAC, plumbing and gas service across Southside Virginia.";
+    return {
+      meta: [
+        { title },
+        { name: "description", content: description },
+        { property: "og:title", content: title },
+        { property: "og:description", content: description },
+        { property: "og:type", content: "website" },
+        { name: "twitter:card", content: "summary_large_image" },
+      ],
+    };
+  },
+  component: ServiceLocationPage,
 });
 
 function ServiceLocationPage() {
-  const { slug } = Route.useParams(); const page = parsePageSlug(slug);
-  if (!page) return <section className="py-28 text-center"><div className="container-lux"><h1 className="text-4xl font-semibold">Service page not found</h1><p className="mt-4 text-muted-foreground">This service or location is not currently listed.</p><Link to="/" className="mt-7 inline-flex items-center gap-2 font-bold text-copper">Return home <ArrowRight className="h-4 w-4" /></Link></div></section>;
+  const { slug } = Route.useParams();
+  const page = parsePageSlug(slug);
+  if (!page)
+    return (
+      <section className="py-28 text-center">
+        <div className="container-lux">
+          <h1 className="text-4xl font-semibold">Service page not found</h1>
+          <p className="mt-4 text-muted-foreground">
+            This service or location is not currently listed.
+          </p>
+          <Link to="/" className="mt-7 inline-flex items-center gap-2 font-bold text-copper">
+            Return home <ArrowRight className="h-4 w-4" />
+          </Link>
+        </div>
+      </section>
+    );
   const { service, location } = page;
-  return <>
-    <section className="relative isolate overflow-hidden surface-ink py-24 lg:py-32"><img src={img(service.image)} alt={service.imageAlt} className="absolute inset-0 -z-20 h-full w-full object-cover" /><div className="absolute inset-0 -z-10 bg-ink/80" /><div className="container-lux"><div className="max-w-4xl animate-lux-rise"><Eyebrow>{service.category} service · {location.full}</Eyebrow><h1 className="mt-4 text-4xl leading-[1.05] font-semibold text-ink-foreground sm:text-6xl">{service.name} in {location.name}, Virginia</h1><p className="mt-6 max-w-2xl text-lg leading-8 text-ink-foreground/75">{service.tagline} Local technicians, upfront options and {SITE.emergency.toLowerCase()}.</p><div className="mt-9 flex flex-wrap gap-3"><CallButton label="Call for Service" /></div><p className="mt-7 flex items-center gap-2 text-sm text-ink-foreground/65"><MapPin className="h-4 w-4 text-copper" />{location.drive}</p></div></div></section>
-    <section className="py-24"><div className="container-lux grid gap-14 lg:grid-cols-[1fr_21rem]"><article className="prose-lux"><p className="!mt-0 text-lg">{service.intro[0]}</p><p>{service.intro[1]}</p>{service.sections.map((section)=><div key={section.h}><h2>{section.h}</h2><p>{section.p}</p></div>)}<h2>Why choose J&amp;J Mechanical?</h2><ul>{service.benefits.map((benefit)=><li key={benefit}>{benefit}</li>)}</ul><h2>Signs you should schedule service</h2><ul>{service.signs.map((sign)=><li key={sign}>{sign}</li>)}</ul><h2>Local experience in {location.name}</h2>{location.intro.map((p)=><p key={p}>{p}</p>)}<p>{location.housing}</p><p>{location.climate}</p></article><aside><div className="sticky top-36 rounded-2xl surface-ink p-7"><p className="eyebrow text-copper">Fast local dispatch</p><h2 className="mt-3 text-2xl font-semibold text-ink-foreground">Need {service.name.toLowerCase()}?</h2><p className="mt-4 text-sm leading-7 text-ink-foreground/65">Talk to a real person at our Blackstone shop. We serve {location.full} without a national call center.</p><CallButton label="Call Now" className="mt-6 w-full justify-center" /><div className="mt-6 space-y-3">{["Licensed & insured","Written upfront pricing","24/7 emergency service"].map((x)=><p key={x} className="flex items-center gap-2 text-sm text-ink-foreground/75"><CheckCircle2 className="h-4 w-4 text-copper" />{x}</p>)}</div></div></aside></div></section>
-    <section className="bg-secondary py-24"><div className="container-lux"><p className="eyebrow text-copper">Frequently asked questions</p><h2 className="mt-4 text-3xl font-semibold">{service.name} questions in {location.name}</h2><div className="mt-10 grid gap-5 md:grid-cols-2">{[...service.faqs.slice(0,3),...location.faqs.slice(0,2)].map((faq)=><div key={faq.q} className="lux-card p-7"><h3 className="font-semibold">{faq.q}</h3><p className="mt-3 text-sm leading-7 text-muted-foreground">{faq.a}</p></div>)}</div></div></section>
-    <section className="py-20"><div className="container-lux grid gap-8 lg:grid-cols-[1fr_2fr]"><div><p className="eyebrow text-copper">Local proof</p><h2 className="mt-3 text-3xl font-semibold">Trusted across the region.</h2></div><div className="grid gap-5 md:grid-cols-2">{REVIEWS.slice(0,2).map((review)=><blockquote key={review.name} className="border-l-2 border-copper pl-6"><div className="flex gap-1 text-copper">{Array.from({length:5}).map((_,i)=><Star key={i} className="h-3.5 w-3.5 fill-current" />)}</div><p className="mt-3 text-sm leading-7 text-muted-foreground">“{review.text}”</p><p className="mt-3 text-sm font-semibold">{review.name}, {review.city}</p></blockquote>)}</div></div></section>
-    <section className="pb-24"><div className="container-lux"><p className="eyebrow text-copper">Related services</p><div className="mt-6 grid gap-3 md:grid-cols-3">{MAJOR_SERVICES.filter((x)=>x.slug!==service.slug).slice(0,3).map((related)=><Link key={related.slug} to="/$slug" params={{slug:`${related.slug}-${location.slug}`}} className="flex items-center justify-between border-b border-hairline py-4 font-semibold hover:text-copper">{related.name}<ArrowRight className="h-4 w-4" /></Link>)}</div></div></section>
-    <CtaBand title={`${service.name} in ${location.name} starts with one call.`} body="Get prompt local dispatch, a complete diagnosis and clear pricing before work begins." image={service.image} imageAlt={service.imageAlt} />
-  </>;
+  return (
+    <>
+      <section className="relative isolate overflow-hidden surface-ink py-24 lg:py-32">
+        <img
+          src={img(service.image)}
+          alt={service.imageAlt}
+          className="absolute inset-0 -z-20 h-full w-full object-cover"
+        />
+        <div className="absolute inset-0 -z-10 bg-ink/80" />
+        <div className="container-lux">
+          <div className="max-w-4xl animate-lux-rise">
+            <Eyebrow>
+              {service.category} service · {location.full}
+            </Eyebrow>
+            <h1 className="mt-4 text-4xl leading-[1.05] font-semibold text-ink-foreground sm:text-6xl">
+              {service.name} in {location.name}, Virginia
+            </h1>
+            <p className="mt-6 max-w-2xl text-lg leading-8 text-ink-foreground/75">
+              {service.tagline} Local technicians, upfront options and{" "}
+              {SITE.emergency.toLowerCase()}.
+            </p>
+            <div className="mt-9 flex flex-wrap gap-3">
+              <CallButton label="Call for Service" />
+            </div>
+            <p className="mt-7 flex items-center gap-2 text-sm text-ink-foreground/65">
+              <MapPin className="h-4 w-4 text-copper" />
+              {location.drive}
+            </p>
+          </div>
+        </div>
+      </section>
+      <section className="py-24">
+        <div className="container-lux grid gap-14 lg:grid-cols-[1fr_21rem]">
+          <article className="prose-lux">
+            <p className="!mt-0 text-lg">{service.intro[0]}</p>
+            <p>{service.intro[1]}</p>
+            {service.sections.map((section) => (
+              <div key={section.h}>
+                <h2>{section.h}</h2>
+                <p>{section.p}</p>
+              </div>
+            ))}
+            <h2>Why choose J&amp;J Mechanical?</h2>
+            <ul>
+              {service.benefits.map((benefit) => (
+                <li key={benefit}>{benefit}</li>
+              ))}
+            </ul>
+            <h2>Signs you should schedule service</h2>
+            <ul>
+              {service.signs.map((sign) => (
+                <li key={sign}>{sign}</li>
+              ))}
+            </ul>
+            <h2>Local experience in {location.name}</h2>
+            {location.intro.map((p) => (
+              <p key={p}>{p}</p>
+            ))}
+            <p>{location.housing}</p>
+            <p>{location.climate}</p>
+          </article>
+          <aside>
+            <div className="sticky top-36 rounded-2xl surface-ink p-7">
+              <p className="eyebrow text-copper">Fast local dispatch</p>
+              <h2 className="mt-3 text-2xl font-semibold text-ink-foreground">
+                Need {service.name.toLowerCase()}?
+              </h2>
+              <p className="mt-4 text-sm leading-7 text-ink-foreground/65">
+                Talk to a real person at our Blackstone shop. We serve {location.full} without a
+                national call center.
+              </p>
+              <CallButton label="Call Now" className="mt-6 w-full justify-center" />
+              <div className="mt-6 space-y-3">
+                {["Licensed & insured", "Written upfront pricing", "24/7 emergency service"].map(
+                  (x) => (
+                    <p key={x} className="flex items-center gap-2 text-sm text-ink-foreground/75">
+                      <CheckCircle2 className="h-4 w-4 text-copper" />
+                      {x}
+                    </p>
+                  ),
+                )}
+              </div>
+            </div>
+          </aside>
+        </div>
+      </section>
+      <section className="bg-secondary py-24">
+        <div className="container-lux">
+          <p className="eyebrow text-copper">Frequently asked questions</p>
+          <h2 className="mt-4 text-3xl font-semibold">
+            {service.name} questions in {location.name}
+          </h2>
+          <div className="mt-10 grid gap-5 md:grid-cols-2">
+            {[...service.faqs.slice(0, 3), ...location.faqs.slice(0, 2)].map((faq) => (
+              <div key={faq.q} className="lux-card p-7">
+                <h3 className="font-semibold">{faq.q}</h3>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">{faq.a}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="py-20">
+        <div className="container-lux grid gap-8 lg:grid-cols-[1fr_2fr]">
+          <div>
+            <p className="eyebrow text-copper">Local proof</p>
+            <h2 className="mt-3 text-3xl font-semibold">Trusted across the region.</h2>
+          </div>
+          <div className="grid gap-5 md:grid-cols-2">
+            {REVIEWS.slice(0, 2).map((review) => (
+              <blockquote key={review.name} className="border-l-2 border-copper pl-6">
+                <div className="flex gap-1 text-copper">
+                  {Array.from({ length: 5 }).map((_, i) => (
+                    <Star key={i} className="h-3.5 w-3.5 fill-current" />
+                  ))}
+                </div>
+                <p className="mt-3 text-sm leading-7 text-muted-foreground">“{review.text}”</p>
+                <p className="mt-3 text-sm font-semibold">
+                  {review.name}, {review.city}
+                </p>
+              </blockquote>
+            ))}
+          </div>
+        </div>
+      </section>
+      <section className="pb-24">
+        <div className="container-lux">
+          <p className="eyebrow text-copper">Related services</p>
+          <div className="mt-6 grid gap-3 md:grid-cols-3">
+            {MAJOR_SERVICES.filter((x) => x.slug !== service.slug)
+              .slice(0, 3)
+              .map((related) => (
+                <Link
+                  key={related.slug}
+                  to="/$slug"
+                  params={{ slug: `${related.slug}-${location.slug}` }}
+                  className="flex items-center justify-between border-b border-hairline py-4 font-semibold hover:text-copper"
+                >
+                  {related.name}
+                  <ArrowRight className="h-4 w-4" />
+                </Link>
+              ))}
+          </div>
+        </div>
+      </section>
+      <CtaBand
+        title={`${service.name} in ${location.name} starts with one call.`}
+        body="Get prompt local dispatch, a complete diagnosis and clear pricing before work begins."
+        image={service.image}
+        imageAlt={service.imageAlt}
+      />
+    </>
+  );
 }

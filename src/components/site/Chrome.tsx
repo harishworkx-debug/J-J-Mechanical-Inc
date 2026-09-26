@@ -13,7 +13,13 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { SITE } from "@/data/site";
-import { CATEGORY_LABEL, LOCATIONS, MAJOR_SERVICES, pageUrl, servicesByCategory } from "@/data/services";
+import {
+  CATEGORY_LABEL,
+  LOCATIONS,
+  MAJOR_SERVICES,
+  pageUrl,
+  servicesByCategory,
+} from "@/data/services";
 import { img } from "@/lib/images";
 
 /* ---------------------------------- motion --------------------------------- */
@@ -40,7 +46,15 @@ export function Reveal({
   );
 }
 
-export function Parallax({ src, alt, className }: { src: string; alt: string; className?: string }) {
+export function Parallax({
+  src,
+  alt,
+  className,
+}: {
+  src: string;
+  alt: string;
+  className?: string;
+}) {
   const ref = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({ target: ref, offset: ["start end", "end start"] });
   const y = useTransform(scrollYProgress, [0, 1], ["-8%", "8%"]);
@@ -59,7 +73,13 @@ export function Parallax({ src, alt, className }: { src: string; alt: string; cl
 
 /* -------------------------------- primitives ------------------------------- */
 
-export function CallButton({ label = "Call Now", className = "" }: { label?: string; className?: string }) {
+export function CallButton({
+  label = "Call Now",
+  className = "",
+}: {
+  label?: string;
+  className?: string;
+}) {
   return (
     <a
       href={SITE.phoneHref}
@@ -73,9 +93,13 @@ export function CallButton({ label = "Call Now", className = "" }: { label?: str
   );
 }
 
-
-
-export function Eyebrow({ children, tone = "copper" }: { children: ReactNode; tone?: "copper" | "muted" }) {
+export function Eyebrow({
+  children,
+  tone = "copper",
+}: {
+  children: ReactNode;
+  tone?: "copper" | "muted";
+}) {
   return (
     <span className={`eyebrow ${tone === "copper" ? "text-copper" : "text-muted-foreground"}`}>
       {children}
@@ -105,7 +129,9 @@ export function SectionHeading({
         {title}
       </h2>
       {intro ? (
-        <p className={`mt-5 text-base leading-8 ${dark ? "text-ink-foreground/70" : "text-muted-foreground"}`}>
+        <p
+          className={`mt-5 text-base leading-8 ${dark ? "text-ink-foreground/70" : "text-muted-foreground"}`}
+        >
           {intro}
         </p>
       ) : null}
@@ -119,7 +145,10 @@ function DesktopNav() {
   const [open, setOpen] = useState<string | null>(null);
   return (
     <nav className="hidden items-center gap-1 lg:flex" onMouseLeave={() => setOpen(null)}>
-      <Link to="/" className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground">
+      <Link
+        to="/"
+        className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground"
+      >
         Home
       </Link>
 
@@ -127,32 +156,39 @@ function DesktopNav() {
         <button className="flex items-center gap-1.5 rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground">
           Services <ChevronDown className="h-3.5 w-3.5" />
         </button>
-        {open === "services" ? (() => {
-          const activeCats = (["hvac", "plumbing", "gas"] as const).filter(c => servicesByCategory(c).length > 0);
-          return (
-          <div className="absolute top-full left-1/2 z-50 w-max min-w-[20rem] -translate-x-1/2 pt-3">
-            <div className={`grid gap-6 rounded-2xl border border-hairline bg-card p-7 shadow-[var(--shadow-lux)] ${activeCats.length === 3 ? 'grid-cols-3' : activeCats.length === 2 ? 'grid-cols-2' : 'grid-cols-1'}`}>
-              {activeCats.map((cat) => (
-                <div key={cat}>
-                  <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
-                  <ul className="mt-3 space-y-1.5">
-                    {servicesByCategory(cat).map((s) => (
-                      <li key={s.slug}>
-                        <Link
-                          to="/$slug"
-                          params={{ slug: `${s.slug}-blackstone-va` }}
-                          className="block rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
-                        >
-                          {s.name}
-                        </Link>
-                      </li>
+        {open === "services"
+          ? (() => {
+              const activeCats = (["hvac", "plumbing", "gas"] as const).filter(
+                (c) => servicesByCategory(c).length > 0,
+              );
+              return (
+                <div className="absolute top-full left-1/2 z-50 w-max min-w-[20rem] -translate-x-1/2 pt-3">
+                  <div
+                    className={`grid gap-6 rounded-2xl border border-hairline bg-card p-7 shadow-[var(--shadow-lux)] ${activeCats.length === 3 ? "grid-cols-3" : activeCats.length === 2 ? "grid-cols-2" : "grid-cols-1"}`}
+                  >
+                    {activeCats.map((cat) => (
+                      <div key={cat}>
+                        <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
+                        <ul className="mt-3 space-y-1.5">
+                          {servicesByCategory(cat).map((s) => (
+                            <li key={s.slug}>
+                              <Link
+                                to="/$slug"
+                                params={{ slug: `${s.slug}-blackstone-va` }}
+                                className="block rounded-md px-2 py-1 text-sm text-muted-foreground transition-colors hover:bg-secondary hover:text-foreground"
+                              >
+                                {s.name}
+                              </Link>
+                            </li>
+                          ))}
+                        </ul>
+                      </div>
                     ))}
-                  </ul>
+                  </div>
                 </div>
-              ))}
-            </div>
-          </div>
-        );})() : null}
+              );
+            })()
+          : null}
       </div>
 
       <div className="relative" onMouseEnter={() => setOpen("areas")}>
@@ -177,16 +213,28 @@ function DesktopNav() {
         ) : null}
       </div>
 
-      <Link to="/about" className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground">
+      <Link
+        to="/about"
+        className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground"
+      >
         About
       </Link>
-      <Link to="/reviews" className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground">
+      <Link
+        to="/reviews"
+        className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground"
+      >
         Reviews
       </Link>
-      <Link to="/blog" className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground">
+      <Link
+        to="/blog"
+        className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground"
+      >
         Blog
       </Link>
-      <Link to="/contact" className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground">
+      <Link
+        to="/contact"
+        className="rounded-full px-4 py-2 text-sm font-semibold text-ink-foreground/80 hover:text-ink-foreground"
+      >
         Contact
       </Link>
     </nav>
@@ -208,7 +256,8 @@ export function Header() {
     <header className="sticky top-0 z-50">
       <div className="hidden w-full items-center justify-center gap-6 bg-ink px-4 py-2 text-xs text-ink-foreground/70 md:flex">
         <span className="inline-flex items-center gap-1.5">
-          <MapPin className="h-3.5 w-3.5 text-copper" /> {SITE.street}, {SITE.city}, {SITE.state} {SITE.zip}
+          <MapPin className="h-3.5 w-3.5 text-copper" /> {SITE.street}, {SITE.city}, {SITE.state}{" "}
+          {SITE.zip}
         </span>
         <span className="inline-flex items-center gap-1.5">
           <Clock className="h-3.5 w-3.5 text-copper" /> {SITE.hours} · {SITE.emergency}
@@ -255,24 +304,26 @@ export function Header() {
 
         {mobile ? (
           <div className="max-h-[70vh] overflow-y-auto border-t border-ink-foreground/10 bg-ink px-5 pb-8 lg:hidden">
-            {(["hvac", "plumbing", "gas"] as const).filter(c => servicesByCategory(c).length > 0).map((cat) => (
-              <div key={cat} className="mt-5">
-                <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
-                <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
-                  {servicesByCategory(cat).map((s) => (
-                    <Link
-                      key={s.slug}
-                      to="/$slug"
-                      params={{ slug: `${s.slug}-blackstone-va` }}
-                      onClick={() => setMobile(false)}
-                      className="py-1 text-[13px] text-ink-foreground/70"
-                    >
-                      {s.name}
-                    </Link>
-                  ))}
+            {(["hvac", "plumbing", "gas"] as const)
+              .filter((c) => servicesByCategory(c).length > 0)
+              .map((cat) => (
+                <div key={cat} className="mt-5">
+                  <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
+                  <div className="mt-2 grid grid-cols-2 gap-x-4 gap-y-1">
+                    {servicesByCategory(cat).map((s) => (
+                      <Link
+                        key={s.slug}
+                        to="/$slug"
+                        params={{ slug: `${s.slug}-blackstone-va` }}
+                        onClick={() => setMobile(false)}
+                        className="py-1 text-[13px] text-ink-foreground/70"
+                      >
+                        {s.name}
+                      </Link>
+                    ))}
+                  </div>
                 </div>
-              </div>
-            ))}
+              ))}
             <div className="mt-5">
               <p className="eyebrow text-copper">Service Areas</p>
               <div className="mt-2 grid grid-cols-2 gap-1">
@@ -329,14 +380,19 @@ export function CtaBand({
   return (
     <section className="relative isolate overflow-hidden py-24">
       <Parallax src={img(image)} alt={imageAlt} className="absolute inset-0 -z-10 h-full" />
-      <div className="absolute inset-0 -z-10" style={{ backgroundImage: "var(--gradient-sheen)" }} />
+      <div
+        className="absolute inset-0 -z-10"
+        style={{ backgroundImage: "var(--gradient-sheen)" }}
+      />
       <div className="container-lux text-center">
         <Reveal>
           <Eyebrow>Talk to our team</Eyebrow>
           <h2 className="mx-auto mt-4 max-w-3xl text-3xl leading-[1.1] font-semibold text-ink-foreground sm:text-4xl md:text-5xl">
             {title}
           </h2>
-          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-ink-foreground/75">{body}</p>
+          <p className="mx-auto mt-5 max-w-2xl text-base leading-8 text-ink-foreground/75">
+            {body}
+          </p>
           <div className="mt-9 flex flex-wrap items-center justify-center gap-3">
             <CallButton label="Call Now" />
             <Link
@@ -410,24 +466,26 @@ export function Footer() {
             </div>
           </div>
 
-          {(["hvac", "plumbing", "gas"] as const).filter(c => servicesByCategory(c).length > 0).map((cat) => (
-            <div key={cat}>
-              <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
-              <ul className="mt-4 space-y-2">
-                {servicesByCategory(cat).map((s) => (
-                  <li key={s.slug}>
-                    <Link
-                      to="/$slug"
-                      params={{ slug: `${s.slug}-blackstone-va` }}
-                      className="text-[13px] text-ink-foreground/65 transition-colors hover:text-copper"
-                    >
-                      {s.name} in Blackstone VA
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          ))}
+          {(["hvac", "plumbing", "gas"] as const)
+            .filter((c) => servicesByCategory(c).length > 0)
+            .map((cat) => (
+              <div key={cat}>
+                <p className="eyebrow text-copper">{CATEGORY_LABEL[cat]}</p>
+                <ul className="mt-4 space-y-2">
+                  {servicesByCategory(cat).map((s) => (
+                    <li key={s.slug}>
+                      <Link
+                        to="/$slug"
+                        params={{ slug: `${s.slug}-blackstone-va` }}
+                        className="text-[13px] text-ink-foreground/65 transition-colors hover:text-copper"
+                      >
+                        {s.name} in Blackstone VA
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            ))}
         </div>
 
         <div className="mt-14 border-t border-ink-foreground/10 pt-8">

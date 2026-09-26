@@ -1,27 +1,30 @@
 import fs from "node:fs";
 import path from "node:path";
 import { SITE } from "./src/data/site";
-import { SERVICES, LOCATIONS } from "./src/data/services";
+import { SERVICES, LOCATIONS, allServicePages } from "./src/data/services";
 
 function generateSitemap() {
-  const staticRoutes = [
-    "/",
-    "/about",
-    "/reviews",
-    "/blog",
-    "/contact",
-  ];
+  const staticRoutes = ["/", "/about", "/reviews", "/blog", "/contact"];
 
   const dynamicRoutes = new Set<string>();
 
-  // Main service pages (all services linked with the primary location 'blackstone-va')
-  SERVICES.forEach((service) => {
-    dynamicRoutes.add(`/${service.slug}-blackstone-va`);
+  // Add every combination of service + location
+
+  // Add every combination of service + location
+  allServicePages().forEach((page) => {
+    dynamicRoutes.add(page.url);
   });
 
-  // Service areas (only ac-repair for all locations as the main landing page)
-  LOCATIONS.forEach((location) => {
-    dynamicRoutes.add(`/ac-repair-${location.slug}`);
+  // Blog posts
+  const POSTS = [
+    { slug: "heat-pump-not-heating" },
+    { slug: "ac-repair-or-replace" },
+    { slug: "water-heater-warning-signs" },
+    { slug: "prevent-frozen-pipes" },
+    { slug: "hvac-maintenance-guide" },
+  ];
+  POSTS.forEach((post) => {
+    dynamicRoutes.add(`/blog/${post.slug}`);
   });
 
   const allRoutes = [...staticRoutes, ...Array.from(dynamicRoutes)];
@@ -34,7 +37,7 @@ ${allRoutes
     <loc>${SITE.domain}${route}</loc>
     <changefreq>weekly</changefreq>
     <priority>${route === "/" ? "1.0" : "0.8"}</priority>
-  </url>`
+  </url>`,
   )
   .join("\n")}
 </urlset>`;

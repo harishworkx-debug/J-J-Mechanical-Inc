@@ -109,7 +109,8 @@
   );
 
   --shadow-lux: 0 32px 80px -32px color-mix(in oklab, var(--ink) 42%, transparent);
-  --shadow-card: 0 2px 4px -2px color-mix(in oklab, var(--ink) 12%, transparent),
+  --shadow-card:
+    0 2px 4px -2px color-mix(in oklab, var(--ink) 12%, transparent),
     0 18px 40px -24px color-mix(in oklab, var(--ink) 26%, transparent);
   --shadow-copper: 0 18px 44px -18px color-mix(in oklab, var(--copper) 55%, transparent);
 }

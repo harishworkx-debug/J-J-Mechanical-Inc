@@ -4,7 +4,7 @@ export const SITE = {
   domain: "https://www.jjmechanicalservice.com",
   phone: "(434) 206-8795",
   phoneRaw: "4342068795",
-  phoneHref: "tel:4342068795",
+  phoneHref: "tel:+14342068795",
   email: "service@jjmechanicalservice.com",
   street: "111 N Main St",
   city: "Blackstone",

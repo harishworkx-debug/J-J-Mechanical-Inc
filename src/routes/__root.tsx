@@ -78,15 +78,33 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "J&J Mechanical | HVAC & Plumbing Blackstone VA" },
-      { name: "description", content: "24/7 HVAC, plumbing and gas service in Blackstone and Southside Virginia. Call J&J Mechanical for fast, professional local service." },
+      { title: "J&J Mechanical | HVAC, Plumbing & Gas Contractor in Blackstone VA" },
+      {
+        name: "description",
+        content:
+          "J&J Mechanical provides HVAC, AC, heating, furnace, heat pump, plumbing, water heater, drain, sewer and gas services in Blackstone, VA and surrounding Southside Virginia. Call (434) 206-8795.",
+      },
       { name: "author", content: "J&J Mechanical" },
-      { property: "og:title", content: "J&J Mechanical | HVAC & Plumbing" },
-      { property: "og:description", content: "Trusted local HVAC, plumbing and gas service across Southside Virginia." },
+      {
+        property: "og:title",
+        content: "J&J Mechanical | HVAC, Plumbing & Gas Contractor in Blackstone VA",
+      },
+      {
+        property: "og:description",
+        content:
+          "J&J Mechanical provides HVAC, AC, heating, furnace, heat pump, plumbing, water heater, drain, sewer and gas services in Blackstone, VA and surrounding Southside Virginia. Call (434) 206-8795.",
+      },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
-      { name: "twitter:title", content: "J&J Mechanical | HVAC & Plumbing" },
-      { name: "twitter:description", content: "Trusted local HVAC, plumbing and gas service across Southside Virginia." },
+      {
+        name: "twitter:title",
+        content: "J&J Mechanical | HVAC, Plumbing & Gas Contractor in Blackstone VA",
+      },
+      {
+        name: "twitter:description",
+        content:
+          "J&J Mechanical provides HVAC, AC, heating, furnace, heat pump, plumbing, water heater, drain, sewer and gas services in Blackstone, VA and surrounding Southside Virginia. Call (434) 206-8795.",
+      },
     ],
     links: [
       {
@@ -98,7 +116,10 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
       { rel: "apple-touch-icon", href: "/apple-touch-icon.png" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
-      { rel: "stylesheet", href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap" },
+      {
+        rel: "stylesheet",
+        href: "https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Sora:wght@500;600;700&display=swap",
+      },
     ],
   }),
   shellComponent: RootShell,
@@ -108,10 +129,51 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 });
 
 function RootShell({ children }: { children: ReactNode }) {
+  const router = useRouter();
+  const canonicalPath = router.state.location.pathname === "/" ? "" : router.state.location.pathname;
+
   return (
     <html lang="en">
       <head>
         <HeadContent />
+        <link rel="canonical" href={`https://www.jjmechanicalservice.com${canonicalPath}`} />
+        <script
+          type="application/ld+json"
+          dangerouslySetInnerHTML={{
+            __html: JSON.stringify({
+              "@context": "https://schema.org",
+              "@type": "HVACBusiness",
+              name: "J&J Mechanical",
+              url: "https://www.jjmechanicalservice.com",
+              logo: "https://www.jjmechanicalservice.com/favicon.png",
+              image: "https://www.jjmechanicalservice.com/favicon.png",
+              description:
+                "J&J Mechanical is a residential and commercial mechanical contractor serving Blackstone and surrounding Southside Virginia communities with HVAC, air conditioning, heating, furnace, heat pump, plumbing, water heater, drain and sewer, and gas services.",
+              telephone: "+14342068795",
+              address: {
+                "@type": "PostalAddress",
+                streetAddress: "111 N Main St",
+                addressLocality: "Blackstone",
+                addressRegion: "VA",
+                postalCode: "23824",
+                addressCountry: "US",
+              },
+              geo: {
+                "@type": "GeoCoordinates",
+                latitude: 37.08099,
+                longitude: -78.00015,
+              },
+              openingHoursSpecification: [
+                {
+                  "@type": "OpeningHoursSpecification",
+                  dayOfWeek: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
+                  opens: "08:00",
+                  closes: "17:00",
+                },
+              ],
+            }),
+          }}
+        />
       </head>
       <body>
         {children}
@@ -127,7 +189,9 @@ function RootComponent() {
   return (
     <QueryClientProvider client={queryClient}>
       <Header />
-      <main><Outlet /></main>
+      <main>
+        <Outlet />
+      </main>
       <Footer />
       <StickyCta />
     </QueryClientProvider>

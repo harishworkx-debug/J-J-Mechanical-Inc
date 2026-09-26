@@ -1,7 +1,7 @@
 import type { Service } from "./types";
 
 export const GAS_SERVICES: Service[] = [
-{
+  {
     slug: "gas-services",
     name: "Gas Services",
     short: "Permitted natural gas and propane piping, pressure tested and inspected.",
@@ -59,5 +59,5 @@ export const GAS_SERVICES: Service[] = [
         a: "Yes. Propane is common throughout our rural service area, and we coordinate with your supplier on tank-side connections and regulator sizing.",
       },
     ],
-  }
+  },
 ];

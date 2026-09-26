@@ -1,7 +1,7 @@
 import type { Service } from "./types";
 
 export const PLUMBING_SERVICES: Service[] = [
-{
+  {
     slug: "plumbing-repair",
     name: "Plumbing Repair",
     short: "Licensed repairs for leaks, fixtures, valves and supply lines.",
@@ -60,7 +60,7 @@ export const PLUMBING_SERVICES: Service[] = [
       },
     ],
   },
-{
+  {
     slug: "water-heater-services",
     name: "Water Heater Services",
     short: "Restore hot water fast — gas, electric, tank and tankless.",
@@ -119,7 +119,7 @@ export const PLUMBING_SERVICES: Service[] = [
       },
     ],
   },
-{
+  {
     slug: "drain-and-sewer",
     name: "Drain & Sewer Services",
     short: "Cabled, hydro-jetted and camera-verified drain clearing.",
@@ -177,5 +177,5 @@ export const PLUMBING_SERVICES: Service[] = [
         a: "Not when properly applied. We camera first on older lines to confirm the pipe is sound and select the correct pressure and nozzle for the material.",
       },
     ],
-  }
+  },
 ];

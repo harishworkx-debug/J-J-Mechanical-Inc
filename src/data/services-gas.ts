@@ -59,5 +59,81 @@ export const GAS_SERVICES: Service[] = [
         a: "Yes. Propane is common throughout our rural service area, and we coordinate with your supplier on tank-side connections and regulator sizing.",
       },
     ],
+    diagnosticSteps: [
+      {
+        tool: "High-Resolution Manometer & Test Gauge",
+        check: "Standing Pressure & Drop-Out Test",
+        purpose: "Pumps test pressure to code requirement (15–30 PSI) to verify zero drop over the 15-minute test duration.",
+      },
+      {
+        tool: "Digital Combustible Gas Sniffer",
+        check: "Fittings, Unions & Valve Joints",
+        purpose: "Scans for minute gas leaks at threaded joints, CSST terminations, and appliance connectors.",
+      },
+      {
+        tool: "NFPA 54 / IFGC Sizing Tables",
+        check: "Total Connected Appliance BTU Demand",
+        purpose: "Calculates pipe diameter required for total length and equivalent fitting resistance, preventing pressure drops.",
+      },
+      {
+        tool: "CSST Direct Bonding Clamp Tester",
+        check: "Electrical Grounding Path to Service Panel",
+        purpose: "Verifies 6 AWG copper bonding wire provides direct lightning dissipation path to prevent sidewall perforation.",
+      },
+    ],
+    workSteps: [
+      {
+        step: "01",
+        title: "Load Calculation & Route Engineering",
+        description: "Calculate total BTU demand across all present and future appliances; determine optimal pipe pathway.",
+      },
+      {
+        step: "02",
+        title: "County Permitting & Safe Isolation",
+        description: "Pull required mechanical/gas permit with the county and shut off main gas meter or propane tank valve.",
+      },
+      {
+        step: "03",
+        title: "Code-Compliant Material Installation",
+        description: "Install black iron pipe, bonded CSST, or underground polyethylene with tracer wire at required burial depths.",
+      },
+      {
+        step: "04",
+        title: "High-Pressure Witnessed Hold Test",
+        description: "Pressurize system with air/nitrogen, verify zero pressure loss on a diaphragm gauge, and meet the municipal inspector.",
+      },
+      {
+        step: "05",
+        title: "Appliance Purge & Flame Commissioning",
+        description: "Purge air from lines, connect approved shutoffs and flex connectors, test manifold pressure, and verify burner flame.",
+      },
+    ],
+    decisionCriteria: [
+      {
+        factor: "Fuel Volume Demand",
+        repairIf: "Existing pipe diameter supports new appliance without starving existing furnace or water heater.",
+        replaceIf: "Total BTU demand exceeds existing line capacity, requiring an upgraded trunk line or 2-PSI high-pressure system.",
+      },
+      {
+        factor: "CSST Safety Standards",
+        repairIf: "Modern arc-resistant jacketed CSST properly bonded to building electrical ground.",
+        replaceIf: "Legacy yellow-jacket CSST without proper lightning bonding, creating fire risk during summer thunderstorms.",
+      },
+      {
+        factor: "Underground Routing",
+        repairIf: "Above-ground interior routing through crawlspaces or basements.",
+        replaceIf: "Yard trenching requiring continuous yellow MDPE pipe with brass transition risers and tracer wire.",
+      },
+      {
+        factor: "Propane vs Natural Gas",
+        repairIf: "Standard municipal utility meter connection with 7 in.w.c. delivery pressure.",
+        replaceIf: "Propane tank connection requiring dual-stage regulators (10 PSI first stage down to 11 in.w.c. second stage).",
+      },
+    ],
+    caseStudy: {
+      title: "Victoria Sanctuary High-Capacity Gas Line Upgrade",
+      description: "Engineered and installed a 2-inch black iron gas line for a historic Victoria church boiler and kitchen upgrade. Completed full load calculation, pressure testing, and county inspection with zero punch list items.",
+      metric: "Delivered 450,000 BTU capacity with zero pressure drop",
+    },
   },
 ];

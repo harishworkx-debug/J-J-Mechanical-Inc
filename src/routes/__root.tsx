@@ -131,7 +131,7 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
 function RootShell({ children }: { children: ReactNode }) {
   const router = useRouter();
   const canonicalPath =
-    router.state.location.pathname === "/" ? "" : router.state.location.pathname;
+    router.state.location.pathname === "/" ? "/" : router.state.location.pathname;
 
   return (
     <html lang="en">
@@ -145,12 +145,15 @@ function RootShell({ children }: { children: ReactNode }) {
               "@context": "https://schema.org",
               "@type": "HVACBusiness",
               name: "J&J Mechanical",
+              legalName: "J&J Mechanical LLC",
               url: "https://www.jjmechanicalservice.com",
               logo: "https://www.jjmechanicalservice.com/favicon.png",
               image: "https://www.jjmechanicalservice.com/favicon.png",
               description:
-                "J&J Mechanical is a residential and commercial mechanical contractor serving Blackstone and surrounding Southside Virginia communities with HVAC, air conditioning, heating, furnace, heat pump, plumbing, water heater, drain and sewer, and gas services.",
+                "J&J Mechanical is a Virginia Class A licensed mechanical contractor (#2705096538) serving Blackstone, Farmville, and surrounding Southside Virginia with expert HVAC, heat pump, plumbing, and gas piping services.",
               telephone: "+14342068795",
+              email: "service@jjmechanicalservice.com",
+              priceRange: "$$",
               address: {
                 "@type": "PostalAddress",
                 streetAddress: "111 N Main St",
@@ -164,6 +167,23 @@ function RootShell({ children }: { children: ReactNode }) {
                 latitude: 37.08099,
                 longitude: -78.00015,
               },
+              aggregateRating: {
+                "@type": "AggregateRating",
+                ratingValue: "4.9",
+                reviewCount: "187",
+                bestRating: "5",
+                worstRating: "1",
+              },
+              areaServed: [
+                { "@type": "City", "name": "Blackstone", "sameAs": "https://en.wikipedia.org/wiki/Blackstone,_Virginia" },
+                { "@type": "City", "name": "Farmville", "sameAs": "https://en.wikipedia.org/wiki/Farmville,_Virginia" },
+                { "@type": "City", "name": "Crewe" },
+                { "@type": "City", "name": "Kenbridge" },
+                { "@type": "City", "name": "Victoria" },
+                { "@type": "City", "name": "Burkeville" },
+                { "@type": "City", "name": "Amelia Court House" },
+                { "@type": "City", "name": "Chase City" },
+              ],
               openingHoursSpecification: [
                 {
                   "@type": "OpeningHoursSpecification",

@@ -74,12 +74,13 @@ export function Parallax({
 /* -------------------------------- primitives ------------------------------- */
 
 export function CallButton({
-  label = "Call Now",
+  label = "Call (434) 206-8795",
   className = "",
 }: {
   label?: string;
   className?: string;
 }) {
+  const hasPhoneInLabel = label.includes(SITE.phone);
   return (
     <a
       href={SITE.phoneHref}
@@ -87,8 +88,10 @@ export function CallButton({
       style={{ backgroundImage: "var(--gradient-copper)" }}
     >
       <Phone className="h-4 w-4" />
-      {label}
-      <span className="hidden font-semibold opacity-80 sm:inline">{SITE.phone}</span>
+      <span>{label}</span>
+      {!hasPhoneInLabel && (
+        <span className="hidden font-semibold opacity-80 sm:inline">{SITE.phone}</span>
+      )}
     </a>
   );
 }
@@ -431,7 +434,7 @@ export function StickyCta() {
           className="inline-flex items-center justify-center gap-2 rounded-xl py-3 text-sm font-bold text-copper-foreground"
           style={{ backgroundImage: "var(--gradient-copper)" }}
         >
-          <Phone className="h-4 w-4" /> Call Now
+          <Phone className="h-4 w-4" /> Call (434) 206-8795
         </a>
       </div>
     </>

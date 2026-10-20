@@ -59,6 +59,82 @@ export const PLUMBING_SERVICES: Service[] = [
         a: "Yes. Pressure tanks, switches, filtration and softening are routine work for us throughout rural Nottoway, Amelia and Dinwiddie counties.",
       },
     ],
+    diagnosticSteps: [
+      {
+        tool: "Calibrated Water Pressure Gauge (PSI)",
+        check: "Static & Dynamic Water Pressure",
+        purpose: "Checks for excessive pressure (>80 PSI) stressing fixtures or low pressure caused by PRV or well switch failure.",
+      },
+      {
+        tool: "Acoustic & Thermal Leak Locator",
+        check: "Concealed Slab & In-Wall Moisture",
+        purpose: "Pinpoints hidden pressurized pipe leaks behind drywall or under subfloors without exploratory demolition.",
+      },
+      {
+        tool: "Water Hardness & Mineral Test Kit",
+        check: "TDS, Iron & Hardness Grains/Gallon",
+        purpose: "Evaluates rural well water chemistry driving scale buildup in fixtures and premature valve failure.",
+      },
+      {
+        tool: "Hydrostatic Test Gauge",
+        check: "Closed Supply Loop Holding Pressure",
+        purpose: "Guarantees newly repaired pipe joints hold under full line pressure with zero weeping before walls are closed.",
+      },
+    ],
+    workSteps: [
+      {
+        step: "01",
+        title: "Main Shutoff & Pressure Baseline",
+        description: "Locate main shutoff, verify emergency isolation, and measure home water pressure at an exterior bib.",
+      },
+      {
+        step: "02",
+        title: "Non-Invasive Diagnostic Isolation",
+        description: "Inspect fixtures, shutoff valves, supply lines, and crawlspace pipe runs to isolate the exact failure point.",
+      },
+      {
+        step: "03",
+        title: "Upfront Written Repair Options",
+        description: "Present itemized repair options with firm flat-rate pricing before opening walls or turning water off.",
+      },
+      {
+        step: "04",
+        title: "Code-Compliant Material Execution",
+        description: "Install lead-free brass valves, high-grade PEX-A or copper transition fittings, and proper pipe strapping.",
+      },
+      {
+        step: "05",
+        title: "Hydrostatic Pressure Test & Cleanup",
+        description: "Restore water supply, bleed air from fixtures, verify joint integrity under sustained pressure, and clean the work site.",
+      },
+    ],
+    decisionCriteria: [
+      {
+        factor: "Pipe Material",
+        repairIf: "Isolated joint leak in sound modern copper or PEX-A pipe.",
+        replaceIf: "Multiple pinhole leaks in brittle polybutylene or severely scaled galvanized steel pipes.",
+      },
+      {
+        factor: "Shutoff Valve Condition",
+        repairIf: "Packing nut weeping on a modern quarter-turn brass ball valve.",
+        replaceIf: "Corroded, seized multi-turn gate valve that fails to shut water off in an emergency.",
+      },
+      {
+        factor: "Pressure Level",
+        repairIf: "Normal residential pressure between 50 and 70 PSI.",
+        replaceIf: "Pressure spikes over 80–100 PSI requiring installation of an approved pressure-reducing valve (PRV).",
+      },
+      {
+        factor: "Repair History",
+        repairIf: "First-time failure on a specific fixture or isolated line.",
+        replaceIf: "Third or fourth leak within 12 months, indicating systemic pipe wall thinning.",
+      },
+    ],
+    caseStudy: {
+      title: "Blackstone Crawlspace Polybutylene Leak Isolation",
+      description: "Diagnosed a hidden crawlspace leak causing a high water bill in Blackstone. Identified a failing polybutylene fitting, repiped the affected trunk line with expansion PEX-A, and installed an accessible ball valve.",
+      metric: "Eliminated 250 gallons/day water waste and protected flooring",
+    },
   },
   {
     slug: "water-heater-services",
@@ -118,6 +194,82 @@ export const PLUMBING_SERVICES: Service[] = [
         a: "Yes, including compressor, evaporator, condensate and control diagnostics as well as the conventional element and thermostat components.",
       },
     ],
+    diagnosticSteps: [
+      {
+        tool: "Digital Multimeter (Ohms & Voltage)",
+        check: "Upper & Lower Heating Elements",
+        purpose: "Measures 12.8 ohms on 4500W elements to distinguish burned-out elements from thermostat failure.",
+      },
+      {
+        tool: "Digital Thermometer Probe",
+        check: "T&P Relief Valve & Discharge Water Temp",
+        purpose: "Ensures water temperature does not exceed 125°F scalding thresholds and verifies relief valve operates freely.",
+      },
+      {
+        tool: "Combustion Analyzer & Draft Meter",
+        check: "Gas Water Heater Venting Draft",
+        purpose: "Detects back-drafting flue gases and carbon monoxide leakage at the draft hood.",
+      },
+      {
+        tool: "Water Chemistry Test Kit",
+        check: "Hardness Minerals & Anode Depletion",
+        purpose: "Checks whether mineral scale is insulating heating elements and accelerating tank rust.",
+      },
+    ],
+    workSteps: [
+      {
+        step: "01",
+        title: "Cold Water Shutoff & Electrical Lockout",
+        description: "Isolate power and water supply; verify electrical disconnect before opening upper and lower access panels.",
+      },
+      {
+        step: "02",
+        title: "Element, Thermostat & Anode Inspection",
+        description: "Test heating elements, check high-limit ECO switches, inspect anode rod condition, and check for tank rust.",
+      },
+      {
+        step: "03",
+        title: "Clear Repair vs. Replace Guidance",
+        description: "Present options honestly: if an element or valve can safely resolve the issue, we quote repair over replacement.",
+      },
+      {
+        step: "04",
+        title: "Component Replacement & Tank Flushing",
+        description: "Install factory-grade elements or control valves, replace relief valves, and flush mineral sediment from the base.",
+      },
+      {
+        step: "05",
+        title: "Refill, Bleed & Temperature Commissioning",
+        description: "Refill tank completely before restoring power, bleed all air pockets, test hot water at faucets, and verify zero leaks.",
+      },
+    ],
+    decisionCriteria: [
+      {
+        factor: "Tank Age",
+        repairIf: "Under 8–10 years old with an intact inner porcelain glass lining.",
+        replaceIf: "Over 10–12 years old, especially with visible rust weeping at lower seams or fittings.",
+      },
+      {
+        factor: "Failure Type",
+        repairIf: "Electrical element, thermostat, gas thermocouple, or dripping drain valve.",
+        replaceIf: "Tank cylinder puncture or bottom tank leak (corrosion cannot be welded or patched).",
+      },
+      {
+        factor: "Efficiency & Space",
+        repairIf: "Standard tank meets household hot water volume requirements comfortably.",
+        replaceIf: "Upgrading to endless on-demand tankless saves substantial space and utility energy.",
+      },
+      {
+        factor: "Water Hardness",
+        repairIf: "Regularly flushed tank with healthy sacrificial anode rod.",
+        replaceIf: "Heavily scaled tank rumbling like a kettle with inches of rock sediment inside.",
+      },
+    ],
+    caseStudy: {
+      title: "Farmville Navien Tankless Water Heater Conversion",
+      description: "Replaced an aging, leaking 50-gallon electric tank heater in Farmville with a high-efficiency Navien condensing tankless unit, adding a scale inhibitor filter and dedicated gas line.",
+      metric: "Provided endless hot water and cut water heating electric cost by 35%",
+    },
   },
   {
     slug: "drain-and-sewer",
@@ -177,5 +329,82 @@ export const PLUMBING_SERVICES: Service[] = [
         a: "Not when properly applied. We camera first on older lines to confirm the pipe is sound and select the correct pressure and nozzle for the material.",
       },
     ],
+    diagnosticSteps: [
+      {
+        tool: "High-Definition Sewer Inspection Camera",
+        check: "Full Internal Pipe Run to Municipal Main / Septic",
+        purpose: "Records high-resolution video showing roots, bellies, fractures, offset joints, or foreign objects.",
+      },
+      {
+        tool: "Electronic Sonde Pipe Locator",
+        check: "Underground Depth & Exact Yard Position",
+        purpose: "Locates the exact spot and depth of pipe collapses or breaks to prevent unneeded trenching.",
+      },
+      {
+        tool: "Mechanical Root Cutter Heads",
+        check: "Pipe Wall Scouring & Root Clearing",
+        purpose: "Slices thick tree roots flush with pipe inner walls without cracking clay or cast iron pipe joints.",
+      },
+      {
+        tool: "Hydro-Jet Pressure Gauge & Nozzles",
+        check: "3,000+ PSI Scouring Water Stream",
+        purpose: "Completely washes grease, sludge, and scale out of the line and into the municipal main.",
+      },
+    ],
+    workSteps: [
+      {
+        step: "01",
+        title: "Cleanout Access & Drop Cloth Protection",
+        description: "Locate external sewer cleanout or set floor protection around indoor access points.",
+      },
+      {
+        step: "02",
+        title: "Mechanical Clearing & Flow Restoration",
+        description: "Run specialized commercial cable or hydro-jetter to clear the blockage and restore baseline drainage.",
+      },
+      {
+        step: "03",
+        title: "In-Pipe Camera Video Inspection",
+        description: "Push camera down the cleared line to inspect pipe condition, joint alignment, and locate root intrusions.",
+      },
+      {
+        step: "04",
+        title: "Video Review & Long-Term Solutions",
+        description: "Show homeowner the video footage on our monitor, explaining whether simple maintenance or spot repair is needed.",
+      },
+      {
+        step: "05",
+        title: "Clean Site Sanitation & Flow Verification",
+        description: "Test full water flow with multiple fixtures running simultaneously, sanitize cleanout area, and provide recorded video.",
+      },
+    ],
+    decisionCriteria: [
+      {
+        factor: "Clog Frequency",
+        repairIf: "First-time isolated clog from wipes or food debris cleared with standard cable.",
+        replaceIf: "Recurring monthly back-ups caused by collapsed clay tile or sheared cast iron.",
+      },
+      {
+        factor: "Root Severity",
+        repairIf: "Hairline root fibers entering at a single joint maintainable with annual cleaning.",
+        replaceIf: "Severe root clusters breaking pipe collar apart and creating structural collapse.",
+      },
+      {
+        factor: "Pipe Material",
+        repairIf: "Solid PVC schedule 40 pipe with simple buildup.",
+        replaceIf: "Original orangeburg (tar paper) or crumbling thin-wall cast iron nearing structural failure.",
+      },
+      {
+        factor: "Grease vs Mineral Scale",
+        repairIf: "Household organic buildup cleared with cabling and enzyme treatment.",
+        replaceIf: "Heavy industrial grease or calcified mineral scale requiring 3,500 PSI hydro-jetting.",
+      },
+    ],
+    caseStudy: {
+      title: "Crewe Restaurant Grease Line Hydro-Jetting",
+      description: "Resolved recurring kitchen drain backups in Crewe where routine cabling only poked small holes through solidified grease. Scoured the entire 4-inch line with 3,500 PSI hot-water hydro jetting, restoring 100% pipe diameter.",
+      metric: "Zero sewer backups over the following 18 months",
+    },
   },
 ];
+

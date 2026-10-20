@@ -10,6 +10,24 @@ export interface Faq {
   a: string;
 }
 
+export interface DiagnosticStep {
+  tool: string;
+  check: string;
+  purpose: string;
+}
+
+export interface WorkProcessStep {
+  step: string;
+  title: string;
+  description: string;
+}
+
+export interface DecisionCriterion {
+  factor: string;
+  repairIf: string;
+  replaceIf: string;
+}
+
 export interface Service {
   slug: string;
   name: string;
@@ -24,6 +42,14 @@ export interface Service {
   signs: string[];
   faqs: Faq[];
   major?: boolean;
+  diagnosticSteps?: DiagnosticStep[];
+  workSteps?: WorkProcessStep[];
+  decisionCriteria?: DecisionCriterion[];
+  caseStudy?: {
+    title: string;
+    description: string;
+    metric: string;
+  };
 }
 
 export interface Location {

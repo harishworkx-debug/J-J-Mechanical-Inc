@@ -1,46 +1,41 @@
 import fs from "node:fs";
 import path from "node:path";
 import { SITE } from "./src/data/site";
-import { SERVICES, LOCATIONS, allServicePages } from "./src/data/services";
+import { allServicePages } from "./src/data/services";
+import { POSTS } from "./src/data/posts";
 
 function generateSitemap() {
   const staticRoutes = ["/", "/about", "/reviews", "/blog", "/contact"];
 
   const dynamicRoutes = new Set<string>();
 
-  // Add every combination of service + location
-
-  // Add every combination of service + location
+  // Service × Location combinations
   allServicePages().forEach((page) => {
     dynamicRoutes.add(page.url);
   });
 
-  // Blog posts
-  const POSTS = [
-    { slug: "heat-pump-not-heating" },
-    { slug: "ac-repair-or-replace" },
-    { slug: "water-heater-warning-signs" },
-    { slug: "prevent-frozen-pipes" },
-    { slug: "hvac-maintenance-guide" },
-  ];
+  // Individual blog posts
   POSTS.forEach((post) => {
     dynamicRoutes.add(`/blog/${post.slug}`);
   });
 
   const allRoutes = [...staticRoutes, ...Array.from(dynamicRoutes)];
+  const today = new Date().toISOString().split("T")[0];
 
+  // Google for Developers compliant format:
+  // Google ignores <priority> and <changefreq>. Only clean <loc> and <lastmod> are used.
   const sitemap = `<?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 ${allRoutes
   .map(
     (route) => `  <url>
     <loc>${SITE.domain}${route}</loc>
-    <changefreq>weekly</changefreq>
-    <priority>${route === "/" ? "1.0" : "0.8"}</priority>
+    <lastmod>${today}</lastmod>
   </url>`,
   )
   .join("\n")}
-</urlset>`;
+</urlset>
+`;
 
   const publicDir = path.resolve(process.cwd(), "public");
   if (!fs.existsSync(publicDir)) {
@@ -50,7 +45,7 @@ ${allRoutes
   const sitemapPath = path.join(publicDir, "sitemap.xml");
   fs.writeFileSync(sitemapPath, sitemap, "utf8");
 
-  console.log(`Sitemap generated successfully at ${sitemapPath} with ${allRoutes.length} URLs.`);
+  console.log(`Sitemap generated successfully at ${sitemapPath} with ${allRoutes.length} clean canonical URLs.`);
 }
 
 generateSitemap();

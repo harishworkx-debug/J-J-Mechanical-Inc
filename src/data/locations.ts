@@ -26,7 +26,7 @@ export const LOCATIONS: Location[] = [
     faqs: [
       {
         q: "How fast can you reach my home in Blackstone?",
-        a: "Our shop is on N Main St in Blackstone, so most in-town calls are reached within minutes of dispatch, and emergency response is typically under an hour any time of day.",
+        a: "Our shop is located right at 111 N Main St in Blackstone. In-town calls receive direct local dispatch from our shop rather than waiting for a technician commuting from another county. For 24/7 emergencies, our on-call technician responds promptly upon receiving your call.",
       },
       {
         q: "Do you work on older homes in the historic district?",
